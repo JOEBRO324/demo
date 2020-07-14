@@ -1,0 +1,13 @@
+body {
+    background-color:white;
+}
+.mydropdown-active {
+    color: black;
+}
+.my-active {
+    color: black;
+}
+.carCoupe {
+    font-size: large;
+    text-shadow: 0px 0px 30px red,0px 0px 30px red,0px 0px 30px red,0px 0px 10px red,0px 0px 10px red;
+}
