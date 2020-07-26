@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_web\\demoproj_web.csproj": {}
+    "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_web\\demoproj_web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_web\\demoproj_web.csproj": {
+    "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_web\\demoproj_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_web\\demoproj_web.csproj",
+        "projectUniqueName": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_web\\demoproj_web.csproj",
         "projectName": "demoproj_web",
-        "projectPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_web\\demoproj_web.csproj",
+        "projectPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_web\\demoproj_web.csproj",
         "packagesPath": "C:\\Users\\Josef Limmer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_web\\obj\\",
+        "outputPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Josef Limmer\\AppData\\Roaming\\NuGet\\NuGet.Config"

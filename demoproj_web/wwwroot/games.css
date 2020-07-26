@@ -1,0 +1,23 @@
+.my-forms-stacked{
+    background-color: #CB9CF2;
+    border: solid 1px #374A67;
+    border-radius: 6px;
+    padding: 20px 30px 20px 30px;
+}
+
+.my-button{
+    background-color: #374A67;
+}
+
+.my-spacer-top{
+    padding-top: 50px;
+}
+
+.my-spacer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.my-responce{
+    padding-top: 10px;
+}

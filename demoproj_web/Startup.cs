@@ -32,13 +32,16 @@ namespace demoproj_web
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapGet("/", async context =>
+            //     {
+            //         await context.Response.WriteAsync("");
+            //     });
+            // });
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
+    
 }
