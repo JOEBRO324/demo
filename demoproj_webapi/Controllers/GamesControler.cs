@@ -1,0 +1,127 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+//using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
+
+namespace demo_webapi.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class GamesController : ControllerBase
+    {
+        private readonly ILogger<GamesController> _logger;
+
+        public GamesController(ILogger<GamesController> logger)
+        {
+            _logger = logger;
+        }
+
+        //Example call: /games/search?name=gta5&category=shooter&realeasedatebegin=2020/01/01&releasedateend=2020/07/31
+        [HttpGet("search")]
+        public IEnumerable<Game> Get([FromQuery] string name, [FromQuery] string category, [FromQuery] string releaseDateBegin, [FromQuery] string releaseDateEnd)
+        {
+            List<Game> games = new List<Game>();
+
+            string name2 = name != null ? name : "";
+            string category2 = category != null ? category : "";
+            DateTime releaseDateBegin2 = (releaseDateBegin != null) ? DateTime.ParseExact(releaseDateBegin, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) : DateTime.ParseExact("1900/01/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime releaseDateEnd2 = (releaseDateEnd != null) ? DateTime.ParseExact(releaseDateEnd, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) : DateTime.ParseExact("2999/12/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture);
+
+            string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @"select GameID,
+                                               [Name],
+                                               Category,
+                                               ReleaseDate
+                                        from dbo.Games
+                                        where ([Name] = @Name OR @Name = '')
+                                        and  (Category = @Category OR @Category = '')
+                                        and (ReleaseDate >= @ReleaseDateBegin)
+                                        and (ReleaseDate <= @ReleaseDateEnd)
+                                        order by 1";
+
+                command.Parameters.AddWithValue("@Name", name2);
+                command.Parameters.AddWithValue("@Category", category2);
+                command.Parameters.AddWithValue("@ReleaseDateBegin", releaseDateBegin2);
+                command.Parameters.AddWithValue("@ReleaseDateEnd", releaseDateEnd2);
+
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Game game = new Game();
+                    game.GameID = reader.GetInt32(reader.GetOrdinal("GameID"));
+                    game.Name = reader.GetString(reader.GetOrdinal("Name"));
+                    game.Category = reader.GetString(reader.GetOrdinal("Category"));
+                    game.ReleaseDate = reader.GetDateTime(reader.GetOrdinal("ReleaseDate"));
+                    games.Add(game);
+                }
+            }
+
+            return games;
+        }
+
+        // POST /api/games/delete
+        [HttpGet("delete")]
+        public ActionResult<string> InsertGame([FromBody] Game game)
+        {
+            string resultMessage = "fail";
+            string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "insert into Games (GameID) values (@GameID)";
+                command.Parameters.AddWithValue("@GameID", game.GameID);
+
+                int numberOfRowsInserted = command.ExecuteNonQuery();
+
+                if (numberOfRowsInserted == 1)
+                {
+                    resultMessage = "success";
+                }
+            }
+
+            return resultMessage;
+        }
+
+    // POST /games/insert
+        [HttpPost("insert")]
+        public ActionResult<string> DeleteGame([FromBody] Game game)
+        {
+            string resultMessage = "fail";
+            string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "insert into Games (GameID, Name, Category, ReleaseDate) values (@GameID, @Name, @Category, @ReleaseDate)";
+                command.Parameters.AddWithValue("@GameID", game.GameID);
+                command.Parameters.AddWithValue("@Name", game.Name);
+                command.Parameters.AddWithValue("@Category", game.Category);
+                command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+
+                int numberOfRowsInserted = command.ExecuteNonQuery();
+
+                if (numberOfRowsInserted == 1)
+                {
+                    resultMessage = "success";
+                }
+            }
+
+            return resultMessage;
+    }
+}
+}

@@ -532,11 +532,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_webapi\\demoproj_webapi.csproj",
+      "projectUniqueName": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_webapi\\demoproj_webapi.csproj",
       "projectName": "demoproj_webapi",
-      "projectPath": "c:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_webapi\\demoproj_webapi.csproj",
+      "projectPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_webapi\\demoproj_webapi.csproj",
       "packagesPath": "C:\\Users\\Josef Limmer\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Josef Limmer\\Documents\\class_2020\\demoproj_webapi\\obj\\",
+      "outputPath": "C:\\Users\\Josef Limmer\\Documents\\class_2020\\demo\\demoproj_webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Josef Limmer\\AppData\\Roaming\\NuGet\\NuGet.Config"
