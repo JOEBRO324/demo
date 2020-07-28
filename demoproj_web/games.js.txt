@@ -98,7 +98,7 @@
 
     var buttonDelete = document.getElementById("buttonDelete");
 
-    var doDelete = function () { 
+    var doDelete = function () {
 
         var xhr = new XMLHttpRequest();
 
