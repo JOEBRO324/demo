@@ -1,12 +1,8 @@
 .my-forms-stacked{
-    background-color: #CB9CF2;
-    border: solid 1px #374A67;
+    background-color: #374A67;
+    border: solid 1px #9E7B9B;
     border-radius: 6px;
     padding: 20px 30px 20px 30px;
-}
-
-.my-button{
-    background-color: #374A67;
 }
 
 .my-spacer-top{
@@ -20,4 +16,35 @@
 
 .my-responce{
     padding-top: 10px;
+}
+
+.my-nav1{
+    color: #374A67;
+}
+
+.my-body1{
+    background-color: #CB9CF2;
+}
+
+.my-m4{
+    color: #ffffff;
+    padding-top: 5px;
+}
+
+.jl-hidden{
+    display: none;
+}
+
+.jl-responce{
+    color: #ffffff;
+}
+
+.jl-text{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.jl-navbar-color{
+    background-color: #9E7B9B;
 }

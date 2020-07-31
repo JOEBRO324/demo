@@ -7,6 +7,9 @@
     var inputReleaseDateBegin = document.getElementById("inputReleaseDateBegin");
     var inputReleaseDateEnd = document.getElementById("inputReleaseDateEnd");
 
+
+    ///////////////////////////////////////////////////////////////////////////
+
     ///////////////////
     // search function
     ///////////////////
@@ -123,6 +126,45 @@
     };
 
     buttonDelete.addEventListener("click", doDelete);
+
+
+    ///////////////////////////////////////////////////////////////////////
+
+    ////////////////////
+    //navbuttons
+    ////////////////////
+
+    var navButtons = document.getElementsByClassName("jl-nav");
+    var gameSearch = document.getElementById("game-search");
+    var gameInput = document.getElementById("game-input");
+    var gameDelete = document.getElementById("game-delete");
+
+    var handleNavClick = function(event) {
+        
+        //highlight clicked navbutton 
+        var i;
+        for(i = 0; i < navButtons.length; i++) {
+            var navButton = navButtons[i];
+            navButton.classList.remove("active");
+        };
+        event.target.classList.add("active");
+
+        //show selected form
+        gameSearch.classList.add("jl-hidden");
+        gameInput.classList.add("jl-hidden");
+        gameDelete.classList.add("jl-hidden");
+
+        var idToShow = event.target.dataset.page;
+        var pageToShow = document.getElementById(idToShow);
+        pageToShow.classList.remove("jl-hidden");
+    };
+
+    var i;
+    for(i = 0; i < navButtons.length; i++) {
+        var navButton = navButtons[i];
+        navButton.addEventListener("click", handleNavClick);
+    };
+
 
 
 })();
