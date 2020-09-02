@@ -122,6 +122,42 @@ namespace demo_webapi.Controllers
             }
 
             return resultMessage;
+            
+        }
+
+    // PUT /games/edit
+        [HttpPut("edit")]
+        public ActionResult<string> EditGame([FromBody] Game game)
+        {
+            string resultMessage = "fail";
+            string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @" UPDATE Games
+                                       SET [Name] = @Name,
+                                       [Category] = @Category,
+                                       [ReleaseDate] = @ReleaseDate
+                                       WHERE GameID = @GameID";
+                command.Parameters.AddWithValue("@Name", game.Name);
+                command.Parameters.AddWithValue("@GameID", game.GameID);
+                command.Parameters.AddWithValue("@Category", game.Category);
+                command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+
+                int numberOfRowsInserted = command.ExecuteNonQuery();
+                
+                if (numberOfRowsInserted == 1)
+                {
+                    resultMessage = "success";
+                }
+
+            }
+
+            return resultMessage;
+
+        }
     }
-}
 }

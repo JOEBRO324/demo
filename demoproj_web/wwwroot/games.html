@@ -27,10 +27,13 @@
                 <li class="nav-item">
                     <a id="nav_01" class="nav-link jl-nav active" data-page="game-search" href="#">Game Search</a>
                 </li>
-                <li class="nav-item ">
-                    <a id="nav_02" class="nav-link jl-nav" data-page="game-input" href="#">Game Input</a>
+                <li class="nav-item">
+                    <a id="nav_02" class="nav-link jl-nav" data-page="game-input" href="#">Input Game</a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
+                    <a id="nav_04" class="nav-link jl-nav" data-page="game-edit" href="#">Edit Game</a>
+                </li>
+                <li class="nav-item">
                     <a id="nav_03" class="nav-link jl-nav" data-page="game-delete" href="#">Game Delete</a>
                 </li>
             </ul>
@@ -42,9 +45,9 @@
     <main role="main" class="container">
 
 
-<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------ -->
 <!--search forms-->
-<!-------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------ -->
         <div id="game-search" class="jl-text">
             <div class="row">
                 <div class="col-sm-12">
@@ -62,9 +65,9 @@
                             <input id="inputCategory" type="text" class="form-control my-form-control"
                                 placeholder="Category">
                             <input id="inputReleaseDateBegin" type="text" class="form-control my-form-control"
-                                placeholder="Release Date Begin">
+                                placeholder="Release Date Begin YYYY/MM/DD">
                             <input id="inputReleaseDateEnd" type="text" class="form-control my-form-control"
-                                placeholder="Release Date End">
+                                placeholder="Release Date End YYYY/MM/DD">
                             <button id="buttonOk" type="button" class="btn btn-outline-light jl-buttons">Search</button>
                         </div>
                     </form>
@@ -81,6 +84,38 @@
             </div>
         </div>
 
+        
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!--edit forms-->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+        <div id="game-edit" class="jl-hidden jl-text">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="my-m4">Edit</h4>
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <form class="form-stacked my-form my-normal my-forms-stacked">
+                        <div class="form-group">
+                            <input id="editGameID" type="text" class="form-control my-form-control" placeholder="Game ID">
+                            <input id="editName" type="text" class="form-control my-form-control" placeholder="Name">
+                            <input id="editCategory" type="text" class="form-control my-form-control"
+                                placeholder="Category">
+                            <input id="editReleaseDate" type="text" class="form-control my-form-control"
+                                placeholder="Release Date YYYY/MM/DD">
+                            <button id="buttonEdit" type="button" class="btn btn-outline-light jl-buttons">Edit</button>
+                        </div>
+                    </form>
+                </div> 
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+
+   
 <!-------------------------------------------------------------------------------------------------------->
 <!--input forms-->
 <!-------------------------------------------------------------------------------------------------------->
@@ -104,7 +139,7 @@
                             <input id="inputCategory2" type="text" class="form-control my-form-control"
                                 placeholder="Category">
                             <input id="inputReleaseDate" type="text" class="form-control my-form-control"
-                                placeholder="Release Date">
+                                placeholder="Release Date YYYY/MM/DD">
                             <button id="buttonSave" type="button" class="btn btn-outline-light">Save</button>
                         </div>
                     </form>

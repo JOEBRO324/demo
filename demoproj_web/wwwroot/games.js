@@ -131,12 +131,59 @@
     ///////////////////////////////////////////////////////////////////////
 
     ////////////////////
+    //edit button
+    ////////////////////
+
+    var buttonEdit = document.getElementById("buttonEdit");
+
+    var doUpdate = function () {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) { //done
+                if (xhr.status === 200) { //ok
+                    alert(xhr.responseText);
+                } else {
+                    alert(xhr.responseText);
+                }
+            }
+        };
+
+        var editName = document.getElementById("editName");
+        var name = editName.value;
+
+        var editGameID = document.getElementById("editGameID");
+        var gameID = editGameID.value;
+        var intGameID = parseInt(gameID);
+
+        var editCategory = document.getElementById("editCategory");
+        var category = editCategory.value;
+
+        var editReleaseDate = document.getElementById("editReleaseDate");
+        var releaseDate = new Date(editReleaseDate.value);
+
+        var game = { "Name": name, "Category": category, "ReleaseDate": releaseDate, "GameID": intGameID };
+        var gameJSON = JSON.stringify(game);
+
+        //console.log(gameJSON);
+        xhr.open('PUT', 'https://localhost:5001/games/edit', true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(gameJSON);
+    };
+
+    buttonEdit.addEventListener("click", doUpdate);
+
+    ///////////////////////////////////////////////////////////////////////
+
+    ////////////////////
     //navbuttons
     ////////////////////
 
     var navButtons = document.getElementsByClassName("jl-nav");
     var gameSearch = document.getElementById("game-search");
     var gameInput = document.getElementById("game-input");
+    var gameEdit = document.getElementById("game-edit");
     var gameDelete = document.getElementById("game-delete");
 
     var handleNavClick = function(event) {
@@ -153,6 +200,7 @@
         gameSearch.classList.add("jl-hidden");
         gameInput.classList.add("jl-hidden");
         gameDelete.classList.add("jl-hidden");
+        gameEdit.classList.add("jl-hidden");
 
         var idToShow = event.target.dataset.page;
         var pageToShow = document.getElementById(idToShow);
