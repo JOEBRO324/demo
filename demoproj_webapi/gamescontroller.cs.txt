@@ -97,31 +97,34 @@ namespace demo_webapi.Controllers
 
     // POST /games/insert
         [HttpPost("insert")]
-        public ActionResult<string> InsertGame([FromBody] Game game)
+public ActionResult<string> InsertGame([FromBody] Game game)
+{
+    string resultMessage = "fail";
+    string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
+    try
+    {
+        using (var connection = new SqlConnection(connectionString))
         {
-            string resultMessage = "fail";
-            string connectionString = @"Server=LAPTOP-7H6SGLKQ\SQLEXPRESS;Database=game_site;Trusted_Connection=True;";
-           // DateTime releaseDate = DateTime.ParseExact(game.ReleaseDate, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture);
-
-            using (var connection = new SqlConnection(connectionString))
+            connection.Open();
+            using (var command = connection.CreateCommand())
             {
-                connection.Open();
-
-                var command = connection.CreateCommand();
                 command.CommandText = "insert into Games (Name, Category, ReleaseDate) values (@Name, @Category, @ReleaseDate)";
                 command.Parameters.AddWithValue("@Name", game.Name);
                 command.Parameters.AddWithValue("@Category", game.Category);
                 command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
-
                 int numberOfRowsInserted = command.ExecuteNonQuery();
-
                 if (numberOfRowsInserted == 1)
                 {
                     resultMessage = "success";
                 }
             }
-
-            return resultMessage;
+        }
     }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Error inserting game.");
+    }
+    return resultMessage;
+}
 }
 }
